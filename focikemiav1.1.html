@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<meta charset="UTF-8">
+<title>Föci vagy kémia?</title>
+<body style="background-color:#1c1b22">
+<font color="white">
+Nyomd meg a 'Start!' gombot, hogy megtudd a titkot.<br><br><br>
+<!-- Kezelőfelület -->
+<label for="year">Év</label>
+<input id="year" type="text"><br><br>
+<label for="month">Hónap</label>
+<input id="month" type="text"><br><br>
+<label for="day">Nap</label>
+<input id="day" type="text"><br><br>
+  <button onclick="myFunctionn()">Start!</button>
+
+<!-- A szkript -->
+<script>
+
+//alap var illetve const
+const Date1 = new Date("09/06/2021");
+var ma = new Date();
+console.log("Az első A hét hétfője: "+Date1)
+
+//mai dátum a szövegdobozokba
+document.getElementById("year").value = ma.getFullYear()
+document.getElementById("month").value = ma.getMonth()+1
+document.getElementById("day").value = ma.getDate()
+
+//számolás funkció start gomb
+function myFunctionn() {
+
+//a beírt dátum megszerzése
+var evvegleges = document.getElementById("year").value
+var honapvegleges = document.getElementById("month").value -1
+var napvegleges = document.getElementById("day").value
+var Date2 = new Date(evvegleges, honapvegleges, napvegleges);
+console.log("A beírt dátum: "+Date2)
+
+//számolás 1.0 miliszek
+var Difference_In_Time = Date2.getTime() - Date1.getTime();
+
+// számolás 1.1 napban
+var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+console.log("Napkülönbség: "+Difference_In_Days)
+
+//számolás 1.2 nap/7 (azért pereight mert eredetileg nyolccal osztottam)
+var Pereight = Difference_In_Days/7
+console.log("Napok száma osztva héttel: "+Pereight)
+
+//számolás 1.3 lefelé egészre kerekítés
+var wholeNum = Math.floor(Pereight);
+console.log("Napok számában a hét egészre kerekítve lefelé: "+wholeNum)
+
+//számolás 2 ifelse
+if (wholeNum % 2 == 0) {
+  alert("A beírt dátumra következő héten kémia lesz!")
+} else {
+  alert("A beírt dátumra következő héten föci lesz!")
+}}
+
+</script>
